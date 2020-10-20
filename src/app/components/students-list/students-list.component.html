@@ -1,0 +1,64 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar por nombre de estudiante"
+          [(ngModel)]="nombre"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchNombre()"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Lista de estudiantes</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let student of students; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveStudent(student, i)"
+        >
+          {{ student.nombre }} {{ student.apellido }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllStudents()">
+        Eliminar Todos
+      </button>
+      <a href="add" class="btn btn-sm btn-primary">Agregar Estudiante</a>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentStudent">
+        <h4>Estudiante</h4>
+        <div>
+          <label><strong>Nombre:</strong></label> {{ currentStudent.nombre }}
+        </div>
+        <div>
+          <label><strong>Apellidos:</strong></label>
+          {{ currentStudent.apellido }}
+        </div>
+        <div>
+          <label><strong>Estado:</strong></label>
+          {{ currentStudent.asistio ? "Asistio" : "No asistio" }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/students/{{ currentStudent.id }}">
+          Editar
+        </a>
+      </div>
+  
+      <div *ngIf="!currentStudent">
+        <br />
+        <p>Por favor hacer click en un Estudiante...</p>
+      </div>
+    </div>
+  </div>

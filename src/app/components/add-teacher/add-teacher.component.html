@@ -1,0 +1,35 @@
+<div style="width: 400px; margin: auto;">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            required
+            [(ngModel)]="teacher.nombre"
+            name="nombre"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="apellido">Apellidos</label>
+          <input
+            class="form-control"
+            id="apellido"
+            required
+            [(ngModel)]="teacher.apellido"
+            name="apellido"
+          />
+        </div>
+  
+        <button (click)="saveTeacher()" class="btn btn-success">Enviar</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Agregado con éxito!</h4>
+        <button class="btn btn-success" (click)="newTeacher()">Agregar Profesor</button>
+      </div>
+    </div>
+  </div>

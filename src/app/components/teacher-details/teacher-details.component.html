@@ -1,0 +1,65 @@
+<div style="width: 400px; margin: auto;">
+    <div *ngIf="currentTeacher" class="edit-form">
+      <h4>Profesor</h4>
+      <form>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            [(ngModel)]="currentTeacher.nombre"
+            name="nombre"
+          />
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellidos</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            [(ngModel)]="currentTeacher.apellido"
+            name="apellido"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label><strong>Activo:</strong></label>
+          {{ currentTeacher.activo ? "Activo" : "No activo" }}
+        </div>
+      </form>
+  
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentTeacher.activo"
+        (click)="updateActivo(false)"
+      >
+        No esta activo
+      </button>
+      <button
+        *ngIf="!currentTeacher.published"
+        class="badge badge-primary mr-2"
+        (click)="updateActivo(true)"
+      >
+        Activo
+      </button>
+  
+      <button class="badge badge-danger mr-2" (click)="deleteTeacher()">
+        Eliminar
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success"
+        (click)="updateTeacher()"
+      >
+        Actualizar
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentTeacher">
+      <br />
+      <p>No hay acceso a Profesores...</p>
+    </div>
+  </div>
